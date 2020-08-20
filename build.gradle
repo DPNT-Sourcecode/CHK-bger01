@@ -1,5 +1,10 @@
-apply plugin: 'java'
-apply plugin: "jacoco"
+plugins {
+	id 'application'
+	id 'java'
+	id 'eclipse'
+    id 'jacoco'
+	id 'io.freefair.lombok' version '5.1.1'
+}
 
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = 1.8
@@ -66,5 +71,3 @@ jacocoTestReport {
         html.destination file("${buildDir}/jacocoHtml")
     }
 }
-
-
