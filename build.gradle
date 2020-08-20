@@ -3,7 +3,6 @@ plugins {
 	id 'java'
 	id 'eclipse'
     id 'jacoco'
-	id 'io.freefair.lombok'
 }
 
 //noinspection GroovyUnusedAssignment
@@ -71,4 +70,5 @@ jacocoTestReport {
         html.destination file("${buildDir}/jacocoHtml")
     }
 }
+
 
