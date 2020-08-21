@@ -3,6 +3,10 @@ plugins {
 	id 'java'
 	id 'eclipse'
     id 'jacoco'
+    
+    // Adds @Data and @Slf4j
+    // https://mvnrepository.com/artifact/io.freefair.lombok/io.freefair.lombok.gradle.plugin
+    id "io.freefair.lombok" version "5.1.1"
 }
 
 //noinspection GroovyUnusedAssignment
@@ -15,6 +19,7 @@ repositories {
 
     maven {
         url  "http://dl.bintray.com/julianghionoiu/maven"
+        url 'https://plugins.gradle.org/m2/'
     }
 }
 
@@ -22,10 +27,6 @@ dependencies {
     compile 'ro.ghionoiu:tdl-client-java:0.26.1'
     compile 'com.mashape.unirest:unirest-java:1.4.9'
     compile 'com.google.guava:guava:18.0'
-    
-    // Adds @Data and @Slf4j
-    // https://mvnrepository.com/artifact/io.freefair.lombok/io.freefair.lombok.gradle.plugin
-    id "io.freefair.lombok" version "5.1.1"
 
     testCompile ('junit:junit:4.12') {
         exclude module : 'hamcrest-core'
@@ -72,4 +73,5 @@ jacocoTestReport {
         html.destination file("${buildDir}/jacocoHtml")
     }
 }
+
 
