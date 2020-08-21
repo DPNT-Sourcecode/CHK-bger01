@@ -1,15 +1,28 @@
 package befaster.solutions.HLO;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 
-class HelloSolutionTest {
+@TestInstance(Lifecycle.PER_CLASS)
+public class HelloSolutionTest {
+	private HelloSolution helloApp;
+
+	@BeforeAll
+	public void setUp()
+	{
+		helloApp = new HelloSolution();
+	}
 
 	@Test
-	void test()
+	public void testHello()
 	{
-		fail("Not yet implemented");
+		assertEquals(null, helloApp.hello(null));
+		assertEquals("containing a message", helloApp.hello(""));
 	}
 
 }
+

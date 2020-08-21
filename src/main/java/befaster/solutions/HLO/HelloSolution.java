@@ -1,9 +1,13 @@
 package befaster.solutions.HLO;
 
-import befaster.runner.SolutionNotImplementedException;
-
 public class HelloSolution {
-    public String hello(String friendName) {
-        throw new SolutionNotImplementedException();
-    }
+	public String hello(String friendName)
+	{
+		String output = null;
+		if (friendName != null) {
+			output = "containing a message";
+		}
+		return output;
+	}
 }
+
