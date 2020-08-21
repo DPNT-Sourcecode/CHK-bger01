@@ -33,4 +33,3 @@ public class SumSolutionTest {
 		assertEquals(42, sum.compute(40, 2), "Working params");
 	}
 }
-

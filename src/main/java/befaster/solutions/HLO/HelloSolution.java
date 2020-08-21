@@ -5,10 +5,8 @@ public class HelloSolution {
 	{
 		String output = null;
 		if (friendName != null) {
-			output = "Hello, World!";
+			output = "Hello, " + friendName + "!";
 		}
 		return output;
 	}
 }
-
-

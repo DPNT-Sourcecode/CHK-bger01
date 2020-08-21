@@ -21,9 +21,9 @@ public class HelloSolutionTest {
 	public void testHello()
 	{
 		assertEquals(null, helloApp.hello(null));
-		assertEquals("Hello, World!", helloApp.hello(""));
+		// We want to return the friend's name
+		assertEquals("Hello, !", helloApp.hello(""));
+		assertEquals("Hello, xxx!", helloApp.hello("xxx"));
 	}
 
 }
-
-
