@@ -21,8 +21,9 @@ public class HelloSolutionTest {
 	public void testHello()
 	{
 		assertEquals(null, helloApp.hello(null));
-		assertEquals("containing a message", helloApp.hello(""));
+		assertEquals("Hello, World!", helloApp.hello(""));
 	}
 
 }
+
 

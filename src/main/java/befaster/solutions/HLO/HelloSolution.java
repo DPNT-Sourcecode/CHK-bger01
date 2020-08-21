@@ -5,9 +5,10 @@ public class HelloSolution {
 	{
 		String output = null;
 		if (friendName != null) {
-			output = "containing a message";
+			output = "Hello, World!";
 		}
 		return output;
 	}
 }
+
 
