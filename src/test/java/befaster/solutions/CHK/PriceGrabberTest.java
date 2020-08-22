@@ -22,7 +22,6 @@ class PriceGrabberTest {
 	@Test
 	void testGetPrice()
 	{
-		assertNull(PriceGrabber.getPrice("e"));
 		// Single purchases are allowed
 		assertThat(PriceGrabber.getPrice("A"), is(50));
 		assertThat(PriceGrabber.getPrice("D"), is(15));
@@ -36,5 +35,6 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("ABACDBA"), is(130 + 45 + 20 + 15));
 	}
 }
+
 
 

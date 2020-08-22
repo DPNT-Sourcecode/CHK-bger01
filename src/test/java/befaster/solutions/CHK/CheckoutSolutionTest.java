@@ -22,15 +22,17 @@ class CheckoutSolutionTest {
 	}
 
 	@Test
-	public void testCheckout()
+	void testCheckout()
 	{
 		// Assert valid return values
 		assertEquals(-1, checkoutSolution.checkout(null));
 		// Empty basket is valid
 		assertEquals(0, checkoutSolution.checkout(""));
 		assertEquals(-1, checkoutSolution.checkout("1"));
+		assertEquals(-1, checkoutSolution.checkout("e"));
 		assertThat(checkoutSolution.checkout("ABBC"), greaterThan(-1));
 	}
 
 }
+
 
