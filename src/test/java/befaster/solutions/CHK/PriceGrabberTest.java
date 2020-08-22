@@ -38,7 +38,3 @@ class PriceGrabberTest {
 		new PriceGrabber().countItems("ABCDDCAB");
 	}
 }
-
-
-
-

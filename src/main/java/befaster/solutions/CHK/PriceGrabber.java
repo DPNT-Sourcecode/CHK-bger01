@@ -70,7 +70,3 @@ public final class PriceGrabber {
 	}
 
 }
-
-
-
-
