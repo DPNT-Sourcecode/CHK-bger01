@@ -1,6 +1,7 @@
 package befaster.solutions.CHK;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -39,34 +40,51 @@ public final class PriceGrabber {
 	public static Integer getPrice(String skus)
 	{
 		Integer price = null;
-//		if (skus == null || skus.length() < 2) {
-//			return price;
-//		}
-//		price = 0;
-//		
-//		Map<Char, Integer> itemCoutns = countItems(skus);
-//		
-//		if (aSplits.length == 0 || bSplits.length == 00 || !aSplits[0].equals(bSplits[0])) {
-//			price = aSplits.length * A_MULTI + bSplits.length * B_MULTI;
-//			skus = 	skus.replaceAll("AAA", "").replaceAll("BB", "");
-//		}
-//		
-//		Stream<Character> charStream = skus.chars().mapToObj(c -> (char) c);
-//		// TODO: Reduction from long to int
-//		price += (int) charStream.collect(Collectors.summarizingInt(c -> getUnitPrice(c))).getSum();
+		if (skus == null || skus.length() < 2) {
+			return price;
+		}
+		price = 0;
+		
+		Map<Character, Integer> itemCounts = countItems(skus);
+
+		int aMultiBuyCount = getMultiBuyCount('A', itemCounts.get('A'));
+		int bMultiBuyCount = getMultiBuyCount('B', itemCounts.get('B'));
+		
+		price += aMultiBuyCount * A_MULTI
+		price += bMultiBuyCount * B_MULTI;
+		
+		Stream<Character> charStream = skus.chars().mapToObj(c -> (char) c);
+		// TODO: Reduction from long to int
+		price += (int) charStream.collect(Collectors.summarizingInt(c -> getUnitPrice(c))).getSum();
 		return price;
 	}
 
-	// todo: private 
-	public static Map<Character, Integer> countItems(String skus)
+	// TODO: private
+	public static int getMultiBuyCount(char c, Integer num)
+	{
+		int numGroups = 0;
+		if (c == 'A') {
+			numGroups = Math.floorDiv(num, 3);
+		}
+		if (c == 'B') {
+			numGroups = Math.floorDiv(num, 2);
+		}
+		return numGroups;
+	}
+
+	private static Map<Character, Integer> countItems(String skus)
 	{
 		// Init a map with Every possible itemcode and 0 total
 		Map<Character, Integer> itemMap = "ABCD".chars().collect(HashMap::new,
             (newMap, cha) -> newMap.put((char) cha, 0), HashMap<Character,Integer>::putAll
         );
+
+		List<Character> charList = skus.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
+		for (Character c : charList) {
+			itemMap.put(c, skus.split(c.toString()).length);
+		}
 		
-		itemMap.entrySet().stream().forEach(x -> log.debug(x.getKey() + " -> " + x.getValue()));
-		return itemMap;
 	}
 
 }
+

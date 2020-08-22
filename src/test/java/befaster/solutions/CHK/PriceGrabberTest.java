@@ -33,8 +33,15 @@ class PriceGrabberTest {
 	}
 
 	@Test
-	void testCountItems()
+	void testGetMultiBuyCount()
 	{
-		new PriceGrabber().countItems("ABCDDCAB");
+		// As are groups of 3
+		assertThat(new PriceGrabber().getMultiBuyCount('A', 7), is(2));
+		assertThat(new PriceGrabber().getMultiBuyCount('A', 5), is(1));
+		// Bs are 2
+		assertThat(new PriceGrabber().getMultiBuyCount('B', 9), is(4));
+		assertThat(new PriceGrabber().getMultiBuyCount('B', 10), is(5));
+		assertThat(new PriceGrabber().getMultiBuyCount('B', 11), is(5));
 	}
 }
+
