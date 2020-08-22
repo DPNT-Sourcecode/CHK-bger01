@@ -57,10 +57,8 @@ public final class PriceGrabber {
 		itemCounts.put('A', itemCounts.get('A') - aMultiBuyCount * 3);
 		itemCounts.put('B', itemCounts.get('B') - bMultiBuyCount * 2);
 		
-		Stream<Character> charStream = skus.chars().mapToObj(c -> (char) c);
-		// TODO: Reduction from long to int
-		price += (int) charStream.collect(Collectors.summarizingInt(c -> getUnitPrice(c))).getSum();
-		return price;
+		int remainingProductPrice = itemCounts.keySet().stream().mapToInt(x -> getUnitPrice(x)).sum();
+		return price + remainingProductPrice;
 	}
 
 	private static int getMultiBuyCount(char c, Integer num)
@@ -90,6 +88,7 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
 
