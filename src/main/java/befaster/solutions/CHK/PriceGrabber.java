@@ -40,10 +40,13 @@ public final class PriceGrabber {
 	public static Integer getPrice(String skus)
 	{
 		Integer price = null;
-		if (skus == null || skus.length() < 2) {
+		if (skus == null) {
 			return price;
 		}
 		price = 0;
+		if (skus.length() == 0) {
+			return price;
+		}
 		
 		Map<Character, Integer> itemCounts = countItems(skus);
 
@@ -90,3 +93,4 @@ public final class PriceGrabber {
 	}
 
 }
+

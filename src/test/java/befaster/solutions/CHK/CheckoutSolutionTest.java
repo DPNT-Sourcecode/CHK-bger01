@@ -26,9 +26,11 @@ class CheckoutSolutionTest {
 	{
 		// Assert valid return values
 		assertEquals(-1, checkoutSolution.checkout(null));
-		assertEquals(-1, checkoutSolution.checkout(""));
+		// Empty basket is valid
+		assertEquals(0, checkoutSolution.checkout(""));
 		assertEquals(-1, checkoutSolution.checkout("1"));
 		assertThat(checkoutSolution.checkout("ABBC"), greaterThan(-1));
 	}
 
 }
+
