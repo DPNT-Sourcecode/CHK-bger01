@@ -57,7 +57,9 @@ public final class PriceGrabber {
 		itemCounts.put('A', itemCounts.get('A') - aMultiBuyCount * 3);
 		itemCounts.put('B', itemCounts.get('B') - bMultiBuyCount * 2);
 		
-		int remainingProductPrice = itemCounts.keySet().stream().mapToInt(x -> getUnitPrice(x)).sum();
+		// Sums individual unit price against how many there are.
+		int remainingProductPrice = itemCounts.entrySet().stream()
+				.mapToInt(x -> getUnitPrice(x.getKey()) * x.getValue()).sum();
 		return price + remainingProductPrice;
 	}
 
@@ -88,6 +90,7 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
 
