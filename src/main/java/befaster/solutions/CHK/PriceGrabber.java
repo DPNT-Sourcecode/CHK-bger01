@@ -83,12 +83,13 @@ public final class PriceGrabber {
         );
 
 		List<Character> charList = skus.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
-		for (Character c : charList) {
-			itemMap.put(c, skus.split(c.toString()).length);
+		for (Character c : itemMap.keySet()) {
+			itemMap.put(c, charList.stream().mapToInt(x -> c.equals(x) ? 1 : 0).sum());
 		}
 		return itemMap;
 	}
 
 }
+
 
 
