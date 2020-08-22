@@ -42,7 +42,7 @@ public final class PriceGrabber {
 		String[] aSplits = skus.split("AAA");
 		String[] bSplits = skus.split("BB");
 		
-		if (aSplits[0] != bSplits[0]) {
+		if (aSplits.length == 0 || bSplits.length == 00 || !aSplits[0].equals(bSplits[0])) {
 			price = aSplits.length * A_MULTI + bSplits.length * B_MULTI;
 			skus = 	skus.replaceAll("AAA", "").replaceAll("BB", "");
 		}
@@ -54,5 +54,6 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 

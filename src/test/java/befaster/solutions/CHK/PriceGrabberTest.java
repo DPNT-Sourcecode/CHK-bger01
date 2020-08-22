@@ -24,11 +24,12 @@ class PriceGrabberTest {
 	{
 		assertNull(PriceGrabber.getPrice("e"));
 		assertNull(PriceGrabber.getPrice("A"));
-		assertNull(PriceGrabber.getPrice("AA"));
+		assertThat(PriceGrabber.getPrice("AA"), is(100));
 		assertThat(PriceGrabber.getPrice("AAA"), is(130));
 		assertThat(PriceGrabber.getPrice("BB"), is(45));
 		assertThat(PriceGrabber.getPrice("BBB"), is(75));
 	}
 }
+
 
 
