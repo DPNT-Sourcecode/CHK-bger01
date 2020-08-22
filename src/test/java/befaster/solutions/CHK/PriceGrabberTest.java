@@ -20,7 +20,7 @@ class PriceGrabberTest {
 	}
 
 	@Test
-	void testGetMultiPrice()
+	void testGetPrice()
 	{
 		assertNull(PriceGrabber.getPrice("e"));
 		assertNull(PriceGrabber.getPrice("A"));
@@ -30,4 +30,5 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("BBB"), is(75));
 	}
 }
+
 

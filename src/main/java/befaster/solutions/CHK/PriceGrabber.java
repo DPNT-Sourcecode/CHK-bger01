@@ -37,11 +37,16 @@ public final class PriceGrabber {
 		if (skus == null || skus.length() < 2) {
 			return price;
 		}
+		price = 0;
+		
 		String[] aSplits = skus.split("AAA");
 		String[] bSplits = skus.split("BB");
 		
-		price = aSplits.length * A_MULTI + bSplits.length * B_MULTI;
-		skus = 	skus.replaceAll("AAA", "").replaceAll("BB", "");
+		if (aSplits[0] != bSplits[0]) {
+			price = aSplits.length * A_MULTI + bSplits.length * B_MULTI;
+			skus = 	skus.replaceAll("AAA", "").replaceAll("BB", "");
+		}
+		
 		Stream<Character> charStream = skus.chars().mapToObj(c -> (char) c);
 		// TODO: Reduction from long to int
 		price += (int) charStream.collect(Collectors.summarizingInt(c -> getUnitPrice(c))).getSum();
@@ -49,4 +54,5 @@ public final class PriceGrabber {
 	}
 
 }
+
 
