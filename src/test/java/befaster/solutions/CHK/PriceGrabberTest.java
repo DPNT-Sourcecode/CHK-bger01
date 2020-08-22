@@ -28,8 +28,17 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("AAA"), is(130));
 		assertThat(PriceGrabber.getPrice("BB"), is(45));
 		assertThat(PriceGrabber.getPrice("BBB"), is(75));
+		assertThat(PriceGrabber.getPrice("AAAAAA"), is(260));
+		assertThat(PriceGrabber.getPrice("ABAABA"), is(130 + 50 + 45));
+	}
+
+	@Test
+	void testCountItems()
+	{
+		new PriceGrabber().countItems("ABCDDCAB");
 	}
 }
+
 
 
 
