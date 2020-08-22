@@ -22,7 +22,7 @@ class CheckoutSolutionTest {
 	}
 
 	@Test
-	public void testHello()
+	public void testCheckout()
 	{
 		// Assert valid return values
 		assertEquals(-1, checkoutSolution.checkout(null));
@@ -32,3 +32,4 @@ class CheckoutSolutionTest {
 	}
 
 }
+
