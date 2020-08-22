@@ -50,8 +50,12 @@ public final class PriceGrabber {
 		int aMultiBuyCount = getMultiBuyCount('A', itemCounts.get('A'));
 		int bMultiBuyCount = getMultiBuyCount('B', itemCounts.get('B'));
 		
-		price += aMultiBuyCount * A_MULTI
+		price += aMultiBuyCount * A_MULTI;
 		price += bMultiBuyCount * B_MULTI;
+
+		// Remove multibuy products
+		itemCounts.put('A', itemCounts.get('A') - aMultiBuyCount * 3);
+		itemCounts.put('B', itemCounts.get('B') - bMultiBuyCount * 2);
 		
 		Stream<Character> charStream = skus.chars().mapToObj(c -> (char) c);
 		// TODO: Reduction from long to int
@@ -59,8 +63,7 @@ public final class PriceGrabber {
 		return price;
 	}
 
-	// TODO: private
-	public static int getMultiBuyCount(char c, Integer num)
+	private static int getMultiBuyCount(char c, Integer num)
 	{
 		int numGroups = 0;
 		if (c == 'A') {
@@ -83,8 +86,9 @@ public final class PriceGrabber {
 		for (Character c : charList) {
 			itemMap.put(c, skus.split(c.toString()).length);
 		}
-		
+		return itemMap;
 	}
 
 }
+
 

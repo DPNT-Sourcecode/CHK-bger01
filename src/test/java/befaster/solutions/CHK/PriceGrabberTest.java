@@ -31,17 +31,6 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("AAAAAA"), is(260));
 		assertThat(PriceGrabber.getPrice("ABAABA"), is(130 + 50 + 45));
 	}
-
-	@Test
-	void testGetMultiBuyCount()
-	{
-		// As are groups of 3
-		assertThat(new PriceGrabber().getMultiBuyCount('A', 7), is(2));
-		assertThat(new PriceGrabber().getMultiBuyCount('A', 5), is(1));
-		// Bs are 2
-		assertThat(new PriceGrabber().getMultiBuyCount('B', 9), is(4));
-		assertThat(new PriceGrabber().getMultiBuyCount('B', 10), is(5));
-		assertThat(new PriceGrabber().getMultiBuyCount('B', 11), is(5));
-	}
 }
+
 
