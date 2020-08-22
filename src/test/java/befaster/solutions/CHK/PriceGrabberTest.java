@@ -32,5 +32,3 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("ABAABA"), is(130 + 50 + 45));
 	}
 }
-
-
