@@ -33,6 +33,10 @@ public final class PriceGrabber {
 				price =  15;
 				break;
 			}
+			case 'E': {
+				price =  40;
+				break;
+			}
 		}
 		return price;
 	}
@@ -93,3 +97,4 @@ public final class PriceGrabber {
 	}
 
 }
+
