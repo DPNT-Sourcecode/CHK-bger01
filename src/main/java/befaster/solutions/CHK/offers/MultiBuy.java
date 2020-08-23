@@ -14,4 +14,9 @@ public class MultiBuy extends MultiBuyOffer{
 		super();
 	}
 
+	public boolean isApplicable(String skus)
+	{
+		return false;
+	}
+
 }
