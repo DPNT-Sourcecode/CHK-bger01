@@ -40,7 +40,13 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("ABACDBA"), is(130 + 45 + 20 + 15));
 		// 9 a's, 4 b's
 		assertThat(PriceGrabber.getPrice("ABAABAAAABBAA"), is(200 + 130 + 50 + 90));
+		// 1 free Bs from buying Es
+		assertThat(PriceGrabber.getPrice("EEB"), is(80));
+		assertThat(PriceGrabber.getPrice("EEEB"), is(120));
+		// 2 free Bs from buying Es
+		assertThat(PriceGrabber.getPrice("EEEEBB"), is(160));
 	}
 }
+
 
 

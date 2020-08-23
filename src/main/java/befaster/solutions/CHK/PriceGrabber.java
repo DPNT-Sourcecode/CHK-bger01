@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import befaster.solutions.CHK.offers.BonusBuy;
 import befaster.solutions.CHK.offers.MultiBuy;
+import befaster.solutions.CHK.offers.MultiBuyOffer;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -72,6 +73,15 @@ public final class PriceGrabber {
 		}
 
 		Map<Character, Integer> itemCounts = countItems(skus);
+
+		// Take out any free items.
+		List<BonusBuy> bonusBuys = getBonusBuys(skus);
+		for (BonusBuy bonusBuy : bonusBuys) {
+			Character item = bonusBuy.getItem();
+			int numApplicable = isApplicable(itemCounts, bonusBuy);
+			itemCounts.put(item, itemCounts.get(item) - numApplicable * bonusBuy.getNumRequired());
+		}
+		
 		// An ordered set of offers available we should check for
 		LinkedHashSet<MultiBuy> multiBuys = getApplicableMultiBuys();
 		for (MultiBuy multiBuy : multiBuys) {
@@ -82,15 +92,13 @@ public final class PriceGrabber {
 			itemCounts.put(multiBuyChar, itemCounts.get(multiBuyChar) - numApplicable * multiBuy.getNumRequired());
 		}
 
-		// TODO: Throw any free extras in at the end??
-		//		List<BonusBuy> bonusBuys = getBonusBuys(skus);
 
 		// Sums individual unit price against how many there are.
 		int remainingProductPrice = itemCounts.entrySet().stream().mapToInt(x -> getUnitPrice(x.getKey()) * x.getValue()).sum();
 		return price + remainingProductPrice;
 	}
 
-	private static int isApplicable(Map<Character, Integer> itemCounts, MultiBuy multiBuy)
+	private static int isApplicable(Map<Character, Integer> itemCounts, MultiBuyOffer multiBuy)
 	{
 		return Math.floorDiv(itemCounts.get(multiBuy.getItem()), multiBuy.getNumRequired());
 	}
@@ -127,6 +135,7 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
 
