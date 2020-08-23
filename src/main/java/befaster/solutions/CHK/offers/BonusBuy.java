@@ -7,10 +7,10 @@ public class BonusBuy extends MultiBuyOffer {
 
 	private Character item;
 	private int numRequired;
-	private int freeItem;
+	private Character freeItem;
 	private int numFree;
 	
-	public BonusBuy(Character item, int numRequired, int freeItem, int numFree) {
+	public BonusBuy(Character item, int numRequired, Character freeItem, int numFree) {
 		super();
 		this.item = item;
 		this.numRequired = numRequired;

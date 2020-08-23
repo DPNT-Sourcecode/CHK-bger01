@@ -18,6 +18,7 @@ public final class PriceGrabber {
 	public static final int A_MULTI = 130;
 	public static final int B_MULTI = 45;
 	private static final List<MultiBuy> MULTI_PURCHASE_LIST = createMultiBuyDirectory();
+	private static final List<BonusBuy> BONUS_BUY_OFFER = createBonusBuyDirectory();
 
 	public static Integer getUnitPrice(char cha)
 	{
@@ -60,6 +61,13 @@ public final class PriceGrabber {
 		directory.add(new MultiBuy('B', 2, 45, 1));
 		return directory;
 	}
+	
+	private static List<BonusBuy> createBonusBuyDirectory()
+	{
+		List<BonusBuy> directory = new ArrayList<>(1);
+		directory.add(new BonusBuy('E', 2, 'B', 1));
+		return directory;
+	}
 
 	public static Integer getPrice(String skus)
 	{
@@ -75,7 +83,7 @@ public final class PriceGrabber {
 		Map<Character, Integer> itemCounts = countItems(skus);
 
 		// Take out any free items.
-		List<BonusBuy> bonusBuys = getBonusBuys(skus);
+		List<BonusBuy> bonusBuys = getApplicableBonusBuys();
 		for (BonusBuy bonusBuy : bonusBuys) {
 			Character item = bonusBuy.getItem();
 			int numApplicable = isApplicable(itemCounts, bonusBuy);
@@ -103,10 +111,11 @@ public final class PriceGrabber {
 		return Math.floorDiv(itemCounts.get(multiBuy.getItem()), multiBuy.getNumRequired());
 	}
 
-	private static List<BonusBuy> getBonusBuys(String skus)
+	private static List<BonusBuy> getApplicableBonusBuys()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		List<MultiBuy> bonusBuys = new ArrayList<>(1);
+		set.addAll(priority1Offers);
+		return set;
 	}
 
 	private static LinkedHashSet<MultiBuy> getApplicableMultiBuys()
@@ -135,7 +144,3 @@ public final class PriceGrabber {
 	}
 
 }
-
-
-
-
