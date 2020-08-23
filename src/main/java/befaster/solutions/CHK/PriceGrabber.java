@@ -53,9 +53,8 @@ public final class PriceGrabber {
 		}
 		
 		Map<Character, Integer> itemCounts = countItems(skus);
-
-		int aMultiBuyCount = getMultiBuyCount('A', itemCounts.get('A'));
-		int bMultiBuyCount = getMultiBuyCount('B', itemCounts.get('B'));
+		List<MultiBuy> multiBuys = getMultiBuys(skus);
+		
 		
 		price += aMultiBuyCount * A_MULTI;
 		price += bMultiBuyCount * B_MULTI;
@@ -68,6 +67,12 @@ public final class PriceGrabber {
 		int remainingProductPrice = itemCounts.entrySet().stream()
 				.mapToInt(x -> getUnitPrice(x.getKey()) * x.getValue()).sum();
 		return price + remainingProductPrice;
+	}
+
+	private static List<MultiBuy> getMultiBuys(String skus)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private static int getMultiBuyCount(char c, Integer num)
@@ -97,4 +102,5 @@ public final class PriceGrabber {
 	}
 
 }
+
 
