@@ -6,11 +6,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import befaster.solutions.CHK.offers.BonusBuy;
 import befaster.solutions.CHK.offers.MultiBuy;
-import befaster.solutions.CHK.offers.MultiBuyOffer;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -19,28 +17,29 @@ public final class PriceGrabber {
 	public static final int A_MULTI = 130;
 	public static final int B_MULTI = 45;
 	private static final List<MultiBuy> MULTI_PURCHASE_LIST = createMultiBuyDirectory();
-	
-	public static Integer getUnitPrice(char cha) {
+
+	public static Integer getUnitPrice(char cha)
+	{
 		Integer price = null;
 		switch (cha) {
-			case 'A': {
-				price =  50;
+			case 'A' : {
+				price = 50;
 				break;
 			}
-			case 'B': {
-				price =  30;
+			case 'B' : {
+				price = 30;
 				break;
 			}
-			case 'C': {
-				price =  20;
+			case 'C' : {
+				price = 20;
 				break;
 			}
-			case 'D': {
-				price =  15;
+			case 'D' : {
+				price = 15;
 				break;
 			}
-			case 'E': {
-				price =  40;
+			case 'E' : {
+				price = 40;
 				break;
 			}
 		}
@@ -49,6 +48,7 @@ public final class PriceGrabber {
 
 	/**
 	 * This would usually be loaded from a database or something.
+	 * 
 	 * @return
 	 */
 	private static List<MultiBuy> createMultiBuyDirectory()
@@ -70,7 +70,7 @@ public final class PriceGrabber {
 		if (skus.length() == 0) {
 			return price;
 		}
-		
+
 		Map<Character, Integer> itemCounts = countItems(skus);
 		// An ordered set of offers available we should check for
 		LinkedHashSet<MultiBuy> multiBuys = getApplicableMultiBuys();
@@ -81,13 +81,12 @@ public final class PriceGrabber {
 			price += numApplicable > 0 ? numApplicable * multiBuy.getTotalPrice() : 0;
 			itemCounts.put(multiBuyChar, itemCounts.get(multiBuyChar) - numApplicable * multiBuy.getNumRequired());
 		}
-		
+
 		// TODO: Throw any free extras in at the end??
-//		List<BonusBuy> bonusBuys = getBonusBuys(skus);
-		
+		//		List<BonusBuy> bonusBuys = getBonusBuys(skus);
+
 		// Sums individual unit price against how many there are.
-		int remainingProductPrice = itemCounts.entrySet().stream()
-				.mapToInt(x -> getUnitPrice(x.getKey()) * x.getValue()).sum();
+		int remainingProductPrice = itemCounts.entrySet().stream().mapToInt(x -> getUnitPrice(x.getKey()) * x.getValue()).sum();
 		return price + remainingProductPrice;
 	}
 
@@ -112,18 +111,6 @@ public final class PriceGrabber {
 		return set;
 	}
 
-	private static int getMultiBuyCount(char c, Integer num)
-	{
-		int numGroups = 0;
-		if (c == 'A') {
-			numGroups = Math.floorDiv(num, 3);
-		}
-		if (c == 'B') {
-			numGroups = Math.floorDiv(num, 2);
-		}
-		return numGroups;
-	}
-
 	private static Map<Character, Integer> countItems(String skus)
 	{
 		// Init a map with Every possible itemcode and 0 total
@@ -140,5 +127,6 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
