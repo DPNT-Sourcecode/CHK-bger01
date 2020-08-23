@@ -130,9 +130,3 @@ public final class PriceGrabber {
 	}
 
 }
-
-
-
-
-
-
