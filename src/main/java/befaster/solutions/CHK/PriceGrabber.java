@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import befaster.solutions.CHK.offers.BonusBuy;
@@ -83,11 +84,18 @@ public final class PriceGrabber {
 		Map<Character, Integer> itemCounts = countItems(skus);
 
 		// (Optionally) take out any free items.
+		Map<Character, Integer> freeItems = new HashMap<>(CheckoutSolution.AVAILABLE_ITEMS.size());
 		for (BonusBuy bonusBuy : BONUS_BUY_LIST) {
 			Character freeItem = bonusBuy.getFreeItem();
 			int numApplicable = isApplicable(itemCounts, bonusBuy);
-			// We simply remove the number of free items from the item counts
-			itemCounts.put(freeItem, itemCounts.get(freeItem) - numApplicable * bonusBuy.getNumFree());
+			// Keep tally of free items
+			freeItems.putIfAbsent(freeItem, 0);
+			freeItems.computeIfPresent(freeItem, (key, val) -> val += numApplicable * bonusBuy.getNumFree());
+		}
+		for (Entry<Character, Integer> entry : freeItems.entrySet()) {
+			int numInBasket = itemCounts.get(entry.getKey()) - entry.getValue();
+			// Don't allow negative vals.
+			itemCounts.put(entry.getKey(), Math.max(numInBasket, 0));
 		}
 
 		// An ordered set of offers available we should check for
@@ -136,5 +144,6 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
