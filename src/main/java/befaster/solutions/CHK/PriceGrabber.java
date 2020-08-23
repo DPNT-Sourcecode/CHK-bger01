@@ -82,7 +82,7 @@ public final class PriceGrabber {
 
 		Map<Character, Integer> itemCounts = countItems(skus);
 
-		// Take out any free items.
+		// (Optionally) take out any free items.
 		for (BonusBuy bonusBuy : BONUS_BUY_LIST) {
 			Character freeItem = bonusBuy.getFreeItem();
 			int numApplicable = isApplicable(itemCounts, bonusBuy);
@@ -136,4 +136,5 @@ public final class PriceGrabber {
 	}
 
 }
+
 
