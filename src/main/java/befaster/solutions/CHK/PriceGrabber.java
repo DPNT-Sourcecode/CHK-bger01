@@ -18,7 +18,7 @@ public final class PriceGrabber {
 	public static final int A_MULTI = 130;
 	public static final int B_MULTI = 45;
 	private static final List<MultiBuy> MULTI_PURCHASE_LIST = createMultiBuyDirectory();
-	private static final List<BonusBuy> BONUS_BUY_OFFER = createBonusBuyDirectory();
+	private static final List<BonusBuy> BONUS_BUY_LIST = createBonusBuyDirectory();
 
 	public static Integer getUnitPrice(char cha)
 	{
@@ -61,7 +61,7 @@ public final class PriceGrabber {
 		directory.add(new MultiBuy('B', 2, 45, 1));
 		return directory;
 	}
-	
+
 	private static List<BonusBuy> createBonusBuyDirectory()
 	{
 		List<BonusBuy> directory = new ArrayList<>(1);
@@ -83,13 +83,13 @@ public final class PriceGrabber {
 		Map<Character, Integer> itemCounts = countItems(skus);
 
 		// Take out any free items.
-		List<BonusBuy> bonusBuys = getApplicableBonusBuys();
-		for (BonusBuy bonusBuy : bonusBuys) {
-			Character item = bonusBuy.getItem();
+		for (BonusBuy bonusBuy : BONUS_BUY_LIST) {
+			Character freeItem = bonusBuy.getFreeItem();
 			int numApplicable = isApplicable(itemCounts, bonusBuy);
-			itemCounts.put(item, itemCounts.get(item) - numApplicable * bonusBuy.getNumRequired());
+			// We simply remove the number of free items from the item counts
+			itemCounts.put(freeItem, itemCounts.get(freeItem) - numApplicable * bonusBuy.getNumFree());
 		}
-		
+
 		// An ordered set of offers available we should check for
 		LinkedHashSet<MultiBuy> multiBuys = getApplicableMultiBuys();
 		for (MultiBuy multiBuy : multiBuys) {
@@ -100,7 +100,6 @@ public final class PriceGrabber {
 			itemCounts.put(multiBuyChar, itemCounts.get(multiBuyChar) - numApplicable * multiBuy.getNumRequired());
 		}
 
-
 		// Sums individual unit price against how many there are.
 		int remainingProductPrice = itemCounts.entrySet().stream().mapToInt(x -> getUnitPrice(x.getKey()) * x.getValue()).sum();
 		return price + remainingProductPrice;
@@ -109,13 +108,6 @@ public final class PriceGrabber {
 	private static int isApplicable(Map<Character, Integer> itemCounts, MultiBuyOffer multiBuy)
 	{
 		return Math.floorDiv(itemCounts.get(multiBuy.getItem()), multiBuy.getNumRequired());
-	}
-
-	private static List<BonusBuy> getApplicableBonusBuys()
-	{
-		List<MultiBuy> bonusBuys = new ArrayList<>(1);
-		set.addAll(priority1Offers);
-		return set;
 	}
 
 	private static LinkedHashSet<MultiBuy> getApplicableMultiBuys()
@@ -144,3 +136,4 @@ public final class PriceGrabber {
 	}
 
 }
+

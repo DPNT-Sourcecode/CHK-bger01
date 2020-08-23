@@ -3,7 +3,6 @@ package befaster.solutions.CHK;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -47,3 +46,4 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("EEEEBB"), is(160));
 	}
 }
+

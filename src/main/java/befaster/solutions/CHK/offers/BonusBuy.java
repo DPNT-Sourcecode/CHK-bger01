@@ -9,7 +9,7 @@ public class BonusBuy extends MultiBuyOffer {
 	private int numRequired;
 	private Character freeItem;
 	private int numFree;
-	
+
 	public BonusBuy(Character item, int numRequired, Character freeItem, int numFree) {
 		super();
 		this.item = item;
@@ -19,3 +19,4 @@ public class BonusBuy extends MultiBuyOffer {
 	}
 
 }
+

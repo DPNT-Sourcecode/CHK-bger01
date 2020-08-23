@@ -3,7 +3,7 @@ package befaster.solutions.CHK.offers;
 import lombok.Data;
 
 @Data
-public class MultiBuy extends MultiBuyOffer{
+public class MultiBuy extends MultiBuyOffer {
 
 	private Character item;
 	private int numRequired;
@@ -17,7 +17,7 @@ public class MultiBuy extends MultiBuyOffer{
 		this.totalPrice = totalPrice;
 		this.charPriority = charPriority;
 	}
-	
+
 	public boolean isApplicable(String skus)
 	{
 		return false;
