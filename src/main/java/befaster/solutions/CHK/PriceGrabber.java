@@ -127,9 +127,10 @@ public final class PriceGrabber {
 	private static Map<Character, Integer> countItems(String skus)
 	{
 		// Init a map with Every possible itemcode and 0 total
-		Map<Character, Integer> itemMap = "ABCD".chars().collect(HashMap::new,
-            (newMap, cha) -> newMap.put((char) cha, 0), HashMap<Character,Integer>::putAll
-        );
+		Map<Character, Integer> itemMap = new HashMap(CheckoutSolution.AVAILABLE_ITEMS.size());
+		for (Character cha : CheckoutSolution.AVAILABLE_ITEMS) {
+			itemMap.put(cha, 0);
+		}
 
 		List<Character> charList = skus.chars().mapToObj(c -> (char) c).collect(Collectors.toList());
 		for (Character c : itemMap.keySet()) {
@@ -139,4 +140,5 @@ public final class PriceGrabber {
 	}
 
 }
+
 
