@@ -71,7 +71,6 @@ public final class PriceGrabber {
 		
 		Map<Character, Integer> itemCounts = countItems(skus);
 		List<MultiBuy> multiBuys = getMultiBuys(skus);
-		List<BonusBuy> bonusBuys = getBonusBuys(skus);
 		for ()
 		
 		price += aMultiBuyCount * A_MULTI;
@@ -80,6 +79,9 @@ public final class PriceGrabber {
 		// Remove multibuy products
 		itemCounts.put('A', itemCounts.get('A') - aMultiBuyCount * 3);
 		itemCounts.put('B', itemCounts.get('B') - bMultiBuyCount * 2);
+		
+		// TODO: Throw any free extras in at the end??
+//		List<BonusBuy> bonusBuys = getBonusBuys(skus);
 		
 		// Sums individual unit price against how many there are.
 		int remainingProductPrice = itemCounts.entrySet().stream()
@@ -95,8 +97,10 @@ public final class PriceGrabber {
 
 	private static List<MultiBuy> getMultiBuys(String skus)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		for ()
+		int aMultiBuyCount = getMultiBuyCount('A', itemCounts.get('A'));
+		int bMultiBuyCount = getMultiBuyCount('B', itemCounts.get('B'));
+		
 	}
 
 	private static int getMultiBuyCount(char c, Integer num)
@@ -126,6 +130,7 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class CheckoutSolution {
 	
-	public static final List<Character> availableItems = createItemDirectory();
+	public static final List<Character> AVAILABLE_ITEMS = createItemDirectory();
 
 	public Integer checkout(String skus)
 	{
