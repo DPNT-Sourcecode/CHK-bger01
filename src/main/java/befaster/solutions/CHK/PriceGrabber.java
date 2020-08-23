@@ -75,10 +75,11 @@ public final class PriceGrabber {
 		// An ordered set of offers available we should check for
 		LinkedHashSet<MultiBuy> multiBuys = getApplicableMultiBuys();
 		for (MultiBuy multiBuy : multiBuys) {
+			Character multiBuyChar = multiBuy.getItem();
 			int numApplicable = isApplicable(itemCounts, multiBuy);
 			// Add to price and remove from basket
 			price += numApplicable > 0 ? numApplicable * multiBuy.getTotalPrice() : 0;
-			itemCounts.put('A', itemCounts.get('A') - numApplicable * multiBuy.getNumRequired());
+			itemCounts.put(multiBuyChar, itemCounts.get(multiBuyChar) - numApplicable * multiBuy.getNumRequired());
 		}
 		
 		// TODO: Throw any free extras in at the end??
@@ -138,3 +139,4 @@ public final class PriceGrabber {
 	}
 
 }
+
