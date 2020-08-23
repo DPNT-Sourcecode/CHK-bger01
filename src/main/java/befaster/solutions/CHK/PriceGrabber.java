@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ public final class PriceGrabber {
 
 	public static final int A_MULTI = 130;
 	public static final int B_MULTI = 45;
+	private static final List<MultiBuy> mutliPurchaseDirectory = createMultiBuyDirectory();
 	
 	public static Integer getUnitPrice(char cha) {
 		Integer price = null;
@@ -39,6 +41,20 @@ public final class PriceGrabber {
 			}
 		}
 		return price;
+	}
+
+	/**
+	 * This would usually be loaded from a database or something.
+	 * @return
+	 */
+	private static List<MultiBuy> createMultiBuyDirectory()
+	{
+		List<MultiBuy> directory = new ArrayList<>(3);
+		directory.add(new MultiBuy('A', 3, 130));
+		directory.add(new MultiBuy('A', 3, 130));
+		 3A for 130, 5A for 200 | 
+		 | B    | 30    | 2B for 45 
+		return null;
 	}
 
 	public static Integer getPrice(String skus)
@@ -102,5 +118,6 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
