@@ -1,4 +1,4 @@
-package befaster.solutions.CHK;
+package befaster.solutions.CHK.offers;
 
 import lombok.Data;
 
@@ -19,4 +19,3 @@ public class MultiBuy {
 	}
 
 }
-

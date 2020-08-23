@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import befaster.solutions.CHK.offers.MultiBuy;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -50,11 +51,10 @@ public final class PriceGrabber {
 	private static List<MultiBuy> createMultiBuyDirectory()
 	{
 		List<MultiBuy> directory = new ArrayList<>(3);
-		directory.add(new MultiBuy('A', 3, 130));
-		directory.add(new MultiBuy('A', 3, 130));
-		 3A for 130, 5A for 200 | 
-		 | B    | 30    | 2B for 45 
-		return null;
+		directory.add(new MultiBuy('A', 5, 200, 1));
+		directory.add(new MultiBuy('A', 3, 130, 2));
+		directory.add(new MultiBuy('B', 2, 45, 1));
+		return directory;
 	}
 
 	public static Integer getPrice(String skus)
@@ -70,7 +70,8 @@ public final class PriceGrabber {
 		
 		Map<Character, Integer> itemCounts = countItems(skus);
 		List<MultiBuy> multiBuys = getMultiBuys(skus);
-		
+		List<BonusBuy> bonusBuys = getBonusBuys(skus);
+		for ()
 		
 		price += aMultiBuyCount * A_MULTI;
 		price += bMultiBuyCount * B_MULTI;
@@ -83,6 +84,12 @@ public final class PriceGrabber {
 		int remainingProductPrice = itemCounts.entrySet().stream()
 				.mapToInt(x -> getUnitPrice(x.getKey()) * x.getValue()).sum();
 		return price + remainingProductPrice;
+	}
+
+	private static List<BonusBuy> getBonusBuys(String skus)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	private static List<MultiBuy> getMultiBuys(String skus)
@@ -118,6 +125,7 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
 
