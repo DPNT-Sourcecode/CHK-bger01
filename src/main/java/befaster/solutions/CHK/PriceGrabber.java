@@ -158,16 +158,27 @@ public final class PriceGrabber {
 		// An ordered set of offers available we should check for
 		LinkedHashSet<MultiBuy> multiBuys = getApplicableMultiBuys();
 		for (MultiBuy multiBuy : multiBuys) {
-			Character multiBuyChar = multiBuy.getItem();
 			int numApplicable = isApplicable(itemCounts, multiBuy);
 			// Add to price and remove from basket
 			price += numApplicable > 0 ? numApplicable * multiBuy.getTotalPrice() : 0;
-			itemCounts.put(multiBuyChar, itemCounts.get(multiBuyChar) - numApplicable * multiBuy.getNumRequired());
+			removeMultiBuyItems(itemCounts, multiBuy, numApplicable);
 		}
 
 		// Sums individual unit price against how many there are.
 		int remainingProductPrice = itemCounts.entrySet().stream().mapToInt(x -> getUnitPrice(x.getKey()) * x.getValue()).sum();
 		return price + remainingProductPrice;
+	}
+
+	private static void removeMultiBuyItems(Map<Character, Integer> itemCounts, MultiBuy multiBuy, int numApplicable)
+	{
+		int numToRemove = multiBuy.getNumRequired() * numApplicable;
+		List<Character> offerCharacters = multiBuy.getApplicableItems();
+		for (Character cha : offerCharacters) {
+			while (numToRemove > 0 && itemCounts.get(cha) > 0) {
+				itemCounts.put(cha, itemCounts.get(cha) - 1);
+				numToRemove--;
+			}
+		}
 	}
 
 	/**
@@ -179,8 +190,8 @@ public final class PriceGrabber {
 	private static int isApplicable(Map<Character, Integer> itemCounts, MultiBuyOffer multiBuy)
 	{
 		int numPromosAchieved;
-		int numInBasket = itemCounts.get(multiBuy.getItem());
 		if (multiBuy instanceof BonusBuy) {
+			int numInBasket = itemCounts.get(((BonusBuy) multiBuy).getItem());
 			numPromosAchieved = numBonusBuyApplicable(multiBuy, numInBasket);
 		}
 		// We can only be BonusBuy or MultiBuy
@@ -191,6 +202,8 @@ public final class PriceGrabber {
 				numPromosAchieved = numMultiBuysApplicable(((MultiBuy) multiBuy), itemCounts);
 			}
 			else {
+				// Non groups have only 1 item
+				int numInBasket = itemCounts.get(((MultiBuy) multiBuy).getApplicableItems().get(0));
 				numPromosAchieved = Math.floorDiv(numInBasket, multiBuy.getNumRequired());
 			}
 		}
@@ -248,6 +261,3 @@ public final class PriceGrabber {
 	}
 
 }
-
-
-

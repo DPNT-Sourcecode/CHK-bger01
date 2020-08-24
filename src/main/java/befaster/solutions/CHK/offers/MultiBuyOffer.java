@@ -11,5 +11,3 @@ import lombok.Data;
 public abstract class MultiBuyOffer {
 	private int numRequired;
 }
-
-
