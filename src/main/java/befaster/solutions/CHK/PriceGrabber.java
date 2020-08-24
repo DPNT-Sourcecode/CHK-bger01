@@ -63,6 +63,13 @@ public final class PriceGrabber {
 		directory.add(new MultiBuy('A', 5, 200, 1));
 		directory.add(new MultiBuy('A', 3, 130, 2));
 		directory.add(new MultiBuy('B', 2, 45, 1));
+		directory.add(new MultiBuy('H', 10, 80, 1));
+		directory.add(new MultiBuy('H', 5, 45, 2));
+		directory.add(new MultiBuy('K', 2, 150, 1));
+		directory.add(new MultiBuy('P', 5, 200, 1));
+		directory.add(new MultiBuy('Q', 3, 80, 1));
+		directory.add(new MultiBuy('V', 3, 130, 1));
+		directory.add(new MultiBuy('V', 2, 90, 2));
 		return directory;
 	}
 
@@ -71,6 +78,9 @@ public final class PriceGrabber {
 		List<BonusBuy> directory = new ArrayList<>(1);
 		directory.add(new BonusBuy('E', 2, 'B', 1));
 		directory.add(new BonusBuy('F', 2, 'F', 1));
+		directory.add(new BonusBuy('N', 3, 'M', 1));
+		directory.add(new BonusBuy('R', 3, 'Q', 1));
+		directory.add(new BonusBuy('U', 3, 'U', 1));
 		return directory;
 	}
 
@@ -168,3 +178,4 @@ public final class PriceGrabber {
 	}
 
 }
+
