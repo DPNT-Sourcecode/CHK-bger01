@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class BonusBuy extends MultiBuyOffer {
 
+	// TODO: Groups
 	private Character item;
 	private int numRequired;
 	private Character freeItem;
@@ -19,3 +20,4 @@ public class BonusBuy extends MultiBuyOffer {
 	}
 
 }
+
