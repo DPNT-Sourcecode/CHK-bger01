@@ -66,5 +66,3 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("PQUVPUPVSPUQPVPUQ"), is(250 + 80 + 30 + 120 + 130));
 	}
 }
-
-

@@ -215,5 +215,3 @@ public final class PriceGrabber {
 	}
 
 }
-
-
