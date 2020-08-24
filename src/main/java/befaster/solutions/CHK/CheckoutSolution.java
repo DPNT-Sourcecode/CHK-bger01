@@ -17,7 +17,7 @@ public class CheckoutSolution {
 
 	private static List<Character> createItemDirectory()
 	{
-		return Arrays.asList('A', 'B', 'C', 'D', 'E');
+		return Arrays.asList('A', 'B', 'C', 'D', 'E', 'F');
 	}
 
 }

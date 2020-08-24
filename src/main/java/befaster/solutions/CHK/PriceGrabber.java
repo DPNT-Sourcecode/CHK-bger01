@@ -16,8 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public final class PriceGrabber {
 
-	public static final int A_MULTI = 130;
-	public static final int B_MULTI = 45;
 	private static final List<MultiBuy> MULTI_PURCHASE_LIST = createMultiBuyDirectory();
 	private static final List<BonusBuy> BONUS_BUY_LIST = createBonusBuyDirectory();
 
@@ -45,6 +43,11 @@ public final class PriceGrabber {
 				price = 40;
 				break;
 			}
+			case 'F' : {
+				price = 10;
+				break;
+			}
+			// Ensure we cater for all items in CheckoutSolution.createItemDirectory on add
 		}
 		return price;
 	}
@@ -67,6 +70,7 @@ public final class PriceGrabber {
 	{
 		List<BonusBuy> directory = new ArrayList<>(1);
 		directory.add(new BonusBuy('E', 2, 'B', 1));
+		directory.add(new BonusBuy('F', 2, 'F', 1));
 		return directory;
 	}
 
@@ -144,3 +148,4 @@ public final class PriceGrabber {
 	}
 
 }
+
