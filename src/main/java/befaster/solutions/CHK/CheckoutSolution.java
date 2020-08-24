@@ -1,5 +1,6 @@
 package befaster.solutions.CHK;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,7 +18,12 @@ public class CheckoutSolution {
 
 	private static List<Character> createItemDirectory()
 	{
-		return Arrays.asList('A', 'B', 'C', 'D', 'E', 'F');
+		List<Character> chas = new ArrayList<Character>(26);
+		char c;
+		for(c = 'A'; c <= 'Z'; ++c) {
+			chas.add(c);
+		}
+		return chas;
 	}
 
 }
