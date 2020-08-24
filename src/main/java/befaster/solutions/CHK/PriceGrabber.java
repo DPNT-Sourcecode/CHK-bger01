@@ -126,6 +126,7 @@ public final class PriceGrabber {
 		return directory;
 	}
 
+	// TODO: Method too big
 	public static Integer getPrice(String skus)
 	{
 		Integer price = null;
@@ -177,21 +178,48 @@ public final class PriceGrabber {
 	 */
 	private static int isApplicable(Map<Character, Integer> itemCounts, MultiBuyOffer multiBuy)
 	{
-		int numFree = 0;
+		int numPromosAchieved;
 		int numInBasket = itemCounts.get(multiBuy.getItem());
 		if (multiBuy instanceof BonusBuy) {
-			BonusBuy theOffer = ((BonusBuy) multiBuy);
-			// If the free item is already being purchased, ensure it's in the basket
-			int numSameItemFree = theOffer.getItem().equals(theOffer.getFreeItem()) ? theOffer.getNumFree() : 0;
-			// This logic needs tidying, we only check for additional same items if the above is > 0
-			int numNeededInBasket = theOffer.getNumRequired() + numSameItemFree;
-			if (numInBasket >= numNeededInBasket) {
-				numFree = Math.floorDiv(numInBasket, numNeededInBasket);
-			}
-			// Otherwise we aren't entitled to the free one.
+			numPromosAchieved = numBonusBuyApplicable(multiBuy, numInBasket);
 		}
-		else numFree = Math.floorDiv(numInBasket, multiBuy.getNumRequired());
-		return numFree;
+		// We can only be BonusBuy or MultiBuy
+		else {
+			List<Character> offerProducts = ((MultiBuy) multiBuy).getApplicableItems();
+			boolean isGroupOffer = offerProducts.size() > 1;
+			if (isGroupOffer) {
+				numPromosAchieved = numMultiBuysApplicable(((MultiBuy) multiBuy), itemCounts);
+			}
+			else {
+				numPromosAchieved = Math.floorDiv(numInBasket, multiBuy.getNumRequired());
+			}
+		}
+		return numPromosAchieved;
+	}
+
+	private static int numMultiBuysApplicable(MultiBuy multiBuy, Map<Character, Integer> itemCounts)
+	{
+		List<Character> offerProducts = multiBuy.getApplicableItems();
+		int numInBasket = 0;
+		for (Character cha : offerProducts) {
+			numInBasket += itemCounts.get(cha);
+		}
+		return Math.floorDiv(numInBasket, multiBuy.getNumRequired());
+	}
+
+	private static int numBonusBuyApplicable(MultiBuyOffer multiBuy,  int numInBasket)
+	{
+		int numApplicable = 0;
+		BonusBuy theOffer = ((BonusBuy) multiBuy);
+		// If the free item is already being purchased, ensure it's in the basket
+		int numSameItemFree = theOffer.getItem().equals(theOffer.getFreeItem()) ? theOffer.getNumFree() : 0;
+		// This logic needs tidying, we only check for additional same items if the above is > 0
+		int numNeededInBasket = theOffer.getNumRequired() + numSameItemFree;
+		if (numInBasket >= numNeededInBasket) {
+			numApplicable = Math.floorDiv(numInBasket, numNeededInBasket);
+		}
+		// Otherwise we aren't entitled to the free one.
+		return numApplicable;
 	}
 
 	private static LinkedHashSet<MultiBuy> getApplicableMultiBuys()
@@ -220,5 +248,6 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
