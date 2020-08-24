@@ -117,6 +117,12 @@ public final class PriceGrabber {
 		return price + remainingProductPrice;
 	}
 
+	/**
+	 * 
+	 * @param itemCounts
+	 * @param multiBuy
+	 * @return int the number of multibuys of this flavour that are applicable
+	 */
 	private static int isApplicable(Map<Character, Integer> itemCounts, MultiBuyOffer multiBuy)
 	{
 		int numFree = 0;
@@ -128,7 +134,7 @@ public final class PriceGrabber {
 			// This logic needs tidying, we only check for additional same items if the above is > 0
 			int numNeededInBasket = theOffer.getNumRequired() + numSameItemFree;
 			if (numInBasket >= numNeededInBasket) {
-				numFree = theOffer.getNumFree();
+				numFree = Math.floorDiv(numInBasket, numNeededInBasket);
 			}
 			// Otherwise we aren't entitled to the free one.
 		}
@@ -162,8 +168,3 @@ public final class PriceGrabber {
 	}
 
 }
-
-
-
-
-
