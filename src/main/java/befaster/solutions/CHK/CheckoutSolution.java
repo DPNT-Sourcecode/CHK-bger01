@@ -18,7 +18,8 @@ public class CheckoutSolution {
 
 	private static List<Character> createItemDirectory()
 	{
-		List<Character> chas = new ArrayList<Character>(26);
+		// Happily we sell A-Z at the moment
+		List<Character> chas = new ArrayList<>(26);
 		char c;
 		for(c = 'A'; c <= 'Z'; ++c) {
 			chas.add(c);
@@ -27,3 +28,4 @@ public class CheckoutSolution {
 	}
 
 }
+
