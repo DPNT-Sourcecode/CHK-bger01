@@ -6,4 +6,3 @@ public class ConfigNotFoundException extends Exception {
 	}
 
 }
-

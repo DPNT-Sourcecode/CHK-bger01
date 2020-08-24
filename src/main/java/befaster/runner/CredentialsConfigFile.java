@@ -39,4 +39,3 @@ public class CredentialsConfigFile {
 		return properties;
 	}
 }
-

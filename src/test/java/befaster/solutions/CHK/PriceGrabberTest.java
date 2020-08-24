@@ -48,6 +48,3 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("EE"), is(80));
 	}
 }
-
-
-

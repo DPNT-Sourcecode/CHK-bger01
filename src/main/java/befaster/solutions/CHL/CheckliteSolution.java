@@ -8,4 +8,3 @@ public class CheckliteSolution {
 		throw new SolutionNotImplementedException();
 	}
 }
-

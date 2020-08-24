@@ -19,4 +19,3 @@ public class BonusBuy extends MultiBuyOffer {
 	}
 
 }
-

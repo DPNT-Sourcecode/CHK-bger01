@@ -20,4 +20,3 @@ public class Utils {
 				.setResponseQueueName(readFromConfigFile("tdl_response_queue_name")).setHostname(readFromConfigFile("tdl_hostname"));
 	}
 }
-

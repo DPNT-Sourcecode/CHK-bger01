@@ -7,4 +7,3 @@ public class Two {
 		return 2;
 	}
 }
-
