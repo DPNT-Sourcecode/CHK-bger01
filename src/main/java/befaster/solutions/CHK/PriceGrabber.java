@@ -26,7 +26,6 @@ public final class PriceGrabber {
 		switch (cha) {
 			case 'F' : 
 			case 'O' : 
-			case 'Y' : 
 			case 'H' : {
 				price = 10;
 				break;
@@ -36,16 +35,25 @@ public final class PriceGrabber {
 				price = 15;
 				break;
 			}
+			case 'X' : {
+				price = 17;
+				break;
+			}
 			case 'C' : 
 			case 'G' : 
+			case 'S' : 
 			case 'T' : 
-			case 'W' : {
+			case 'W' : 
+			case 'Y' : {
 				price = 20;
 				break;
 			}
+			case 'Z' : {
+				price = 21;
+				break;
+			}
 			case 'B' :
-			case 'Q' :
-			case 'S' : {
+			case 'Q' : {
 				price = 30;
 				break;
 			}
@@ -62,8 +70,7 @@ public final class PriceGrabber {
 			case 'A' :
 			case 'P' :
 			case 'R' :
-			case 'V' :
-			case 'Z' : {
+			case 'V' : {
 				price = 50;
 				break;
 			}
@@ -72,14 +79,10 @@ public final class PriceGrabber {
 				break;
 			}
 			case 'K' : {
-				price = 80;
+				price = 70;
 				break;
 			}
 			case 'L' : {
-				price = 90;
-				break;
-			}
-			case 'X' : {
 				price = 90;
 				break;
 			}
@@ -215,3 +218,4 @@ public final class PriceGrabber {
 	}
 
 }
+

@@ -55,14 +55,6 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("FFFFF"), is(40));
 		assertThat(PriceGrabber.getPrice("FFFFFF"), is(40));
 		// Items after F TODO: User testing??
-		assertThat(PriceGrabber.getPrice("PPPPPP"), is(250));
-		assertThat(PriceGrabber.getPrice("PQPPPQPP"), is(250 + 60));
-		assertThat(PriceGrabber.getPrice("PQPPPQPPQ"), is(250 + 80));
-		assertThat(PriceGrabber.getPrice("PQPPSPQPPQ"), is(250 + 80 + 30));
-		assertThat(PriceGrabber.getPrice("PQPUPSPUQPPQ"), is(250 + 80 + 30 + 80));
-		assertThat(PriceGrabber.getPrice("PQPUPSPUQPPUQ"), is(250 + 80 + 30 + 120));
-		assertThat(PriceGrabber.getPrice("PQUPUPSPUQPPUQ"), is(250 + 80 + 30 + 120));
-		assertThat(PriceGrabber.getPrice("PQUVPUPSPUQPVPUQ"), is(250 + 80 + 30 + 120 + 90));
-		assertThat(PriceGrabber.getPrice("PQUVPUPVSPUQPVPUQ"), is(250 + 80 + 30 + 120 + 130));
 	}
 }
+
