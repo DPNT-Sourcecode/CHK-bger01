@@ -3,6 +3,7 @@ package befaster.solutions.CHK;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -172,8 +173,16 @@ public final class PriceGrabber {
 
 	private static void removeMultiBuyItems(Map<Character, Integer> itemCounts, MultiBuy multiBuy, int numApplicable)
 	{
+		// We should favour the customer and remove the most expensive item first
 		int numToRemove = multiBuy.getNumRequired() * numApplicable;
 		List<Character> offerCharacters = multiBuy.getApplicableItems();
+		Collections.sort(offerCharacters, new Comparator<Character>() {
+			@Override
+			public int compare(Character o1, Character o2)
+			{
+				return getUnitPrice(o2) - getUnitPrice(o1);
+			}
+		});
 		for (Character cha : offerCharacters) {
 			while (numToRemove > 0 && itemCounts.get(cha) > 0) {
 				itemCounts.put(cha, itemCounts.get(cha) - 1);
@@ -262,5 +271,6 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
