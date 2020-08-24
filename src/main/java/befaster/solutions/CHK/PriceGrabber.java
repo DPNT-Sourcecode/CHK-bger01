@@ -19,34 +19,71 @@ public final class PriceGrabber {
 	private static final List<MultiBuy> MULTI_PURCHASE_LIST = createMultiBuyDirectory();
 	private static final List<BonusBuy> BONUS_BUY_LIST = createBonusBuyDirectory();
 
+	// TODO: Load from file
 	public static Integer getUnitPrice(char cha)
 	{
 		Integer price = null;
 		switch (cha) {
-			case 'A' : {
-				price = 50;
-				break;
-			}
-			case 'B' : {
-				price = 30;
-				break;
-			}
-			case 'C' : {
-				price = 20;
-				break;
-			}
-			case 'D' : {
-				price = 15;
-				break;
-			}
-			case 'E' : {
-				price = 40;
-				break;
-			}
-			case 'F' : {
+			case 'F' : 
+			case 'O' : 
+			case 'Y' : 
+			case 'H' : {
 				price = 10;
 				break;
 			}
+			case 'D' : 
+			case 'M' : {
+				price = 15;
+				break;
+			}
+			case 'C' : 
+			case 'G' : 
+			case 'T' : 
+			case 'W' : {
+				price = 20;
+				break;
+			}
+			case 'B' :
+			case 'Q' :
+			case 'S' : {
+				price = 30;
+				break;
+			}
+			case 'I' : {
+				price = 35;
+				break;
+			}
+			case 'E' :
+			case 'N' :
+			case 'U' : {
+				price = 40;
+				break;
+			}
+			case 'A' :
+			case 'P' :
+			case 'R' :
+			case 'V' :
+			case 'Z' : {
+				price = 50;
+				break;
+			}
+			case 'J' : {
+				price = 60;
+				break;
+			}
+			case 'K' : {
+				price = 80;
+				break;
+			}
+			case 'L' : {
+				price = 90;
+				break;
+			}
+			case 'X' : {
+				price = 90;
+				break;
+			}
+
 			// Ensure we cater for all items in CheckoutSolution.createItemDirectory on add
 		}
 		return price;
@@ -178,4 +215,5 @@ public final class PriceGrabber {
 	}
 
 }
+
 

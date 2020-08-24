@@ -18,7 +18,7 @@ class PriceGrabberTest {
 		assertNull(PriceGrabber.getUnitPrice('e'));
 		assertThat(PriceGrabber.getUnitPrice('E'), is(40));
 		assertNotNull(PriceGrabber.getUnitPrice('F'));
-		assertNull(PriceGrabber.getUnitPrice('G'));
+		assertNull(PriceGrabber.getUnitPrice('1'));
 		assertThat(PriceGrabber.getUnitPrice('A'), is(50));
 	}
 
@@ -56,3 +56,4 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("FFFFFF"), is(40));
 	}
 }
+
