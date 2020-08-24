@@ -119,7 +119,20 @@ public final class PriceGrabber {
 
 	private static int isApplicable(Map<Character, Integer> itemCounts, MultiBuyOffer multiBuy)
 	{
-		return Math.floorDiv(itemCounts.get(multiBuy.getItem()), multiBuy.getNumRequired());
+		int numFree = 0;
+		int numInBasket = itemCounts.get(multiBuy.getItem());
+		// If the free item is already being purchased, ensure it's in the basket
+		if (multiBuy instanceof BonusBuy) {
+			BonusBuy theOffer = ((BonusBuy) multiBuy);
+			int freeItems = theOffer.getNumFree();
+			int numNeededInBasket = theOffer.getNumRequired() + freeItems;
+			if (numInBasket >= numNeededInBasket) {
+				numFree = freeItems;
+			}
+			// Otherwise we aren't entitled to the free one.
+		}
+		else numFree = Math.floorDiv(numInBasket, multiBuy.getNumRequired());
+		return numFree;
 	}
 
 	private static LinkedHashSet<MultiBuy> getApplicableMultiBuys()
@@ -148,4 +161,5 @@ public final class PriceGrabber {
 	}
 
 }
+
 
