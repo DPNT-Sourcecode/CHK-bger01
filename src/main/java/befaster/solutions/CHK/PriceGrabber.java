@@ -125,9 +125,10 @@ public final class PriceGrabber {
 			BonusBuy theOffer = ((BonusBuy) multiBuy);
 			// If the free item is already being purchased, ensure it's in the basket
 			int numSameItemFree = theOffer.getItem().equals(theOffer.getFreeItem()) ? theOffer.getNumFree() : 0;
+			// This logic needs tidying, we only check for additional same items if the above is > 0
 			int numNeededInBasket = theOffer.getNumRequired() + numSameItemFree;
 			if (numInBasket >= numNeededInBasket) {
-				numFree = numSameItemFree;
+				numFree = theOffer.getNumFree();
 			}
 			// Otherwise we aren't entitled to the free one.
 		}
@@ -161,6 +162,7 @@ public final class PriceGrabber {
 	}
 
 }
+
 
 
 
