@@ -1,6 +1,8 @@
 package befaster.solutions.CHK;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -100,16 +102,16 @@ public final class PriceGrabber {
 	private static List<MultiBuy> createMultiBuyDirectory()
 	{
 		List<MultiBuy> directory = new ArrayList<>(3);
-		directory.add(new MultiBuy('A', 5, 200, 1));
-		directory.add(new MultiBuy('A', 3, 130, 2));
-		directory.add(new MultiBuy('B', 2, 45, 1));
-		directory.add(new MultiBuy('H', 10, 80, 1));
-		directory.add(new MultiBuy('H', 5, 45, 2));
-		directory.add(new MultiBuy('K', 2, 150, 1));
-		directory.add(new MultiBuy('P', 5, 200, 1));
-		directory.add(new MultiBuy('Q', 3, 80, 1));
-		directory.add(new MultiBuy('V', 3, 130, 1));
-		directory.add(new MultiBuy('V', 2, 90, 2));
+		directory.add(new MultiBuy(Collections.singletonList('A'), 5, 200, 1));
+		directory.add(new MultiBuy(Collections.singletonList('A'), 3, 130, 2));
+		directory.add(new MultiBuy(Collections.singletonList('B'), 2, 45, 1));
+		directory.add(new MultiBuy(Collections.singletonList('H'), 10, 80, 1));
+		directory.add(new MultiBuy(Collections.singletonList('H'), 5, 45, 2));
+		directory.add(new MultiBuy(Collections.singletonList('K'), 2, 150, 1));
+		directory.add(new MultiBuy(Collections.singletonList('P'), 5, 200, 1));
+		directory.add(new MultiBuy(Collections.singletonList('Q'), 3, 80, 1));
+		directory.add(new MultiBuy(Collections.singletonList('V'), 3, 130, 1));
+		directory.add(new MultiBuy(Arrays.asList('S', 'T', 'X', 'Y', 'Z'), 3, 45, 1));
 		return directory;
 	}
 
@@ -218,4 +220,5 @@ public final class PriceGrabber {
 	}
 
 }
+
 

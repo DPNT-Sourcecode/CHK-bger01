@@ -3,11 +3,16 @@ package befaster.solutions.CHK;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertNull;
+
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+
+import befaster.solutions.CHK.offers.MultiBuy;
 
 @TestInstance(Lifecycle.PER_CLASS)
 class PriceGrabberTest {
@@ -55,6 +60,10 @@ class PriceGrabberTest {
 		assertThat(PriceGrabber.getPrice("FFFFF"), is(40));
 		assertThat(PriceGrabber.getPrice("FFFFFF"), is(40));
 		// Items after F TODO: User testing??
+		assertThat(PriceGrabber.getPrice("KA"), is(50 + 70));
+		assertThat(PriceGrabber.getPrice("YAZK"), is(70 + 50 + 20 + 21));
+		assertThat(PriceGrabber.getPrice("YAZKS"), is(70 + 50 + 45));
 	}
 }
+
 

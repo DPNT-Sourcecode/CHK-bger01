@@ -1,18 +1,20 @@
 package befaster.solutions.CHK.offers;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
 public class MultiBuy extends MultiBuyOffer {
 
-	private Character item;
+	private List<Character> applicableItems;
 	private int numRequired;
 	private int totalPrice;
 	private int charPriority;
 
-	public MultiBuy(Character item, int numRequired, int totalPrice, int charPriority) {
+	public MultiBuy(List<Character> applicableItems, int numRequired, int totalPrice, int charPriority) {
 		super();
-		this.item = item;
+		this.applicableItems = applicableItems;
 		this.numRequired = numRequired;
 		this.totalPrice = totalPrice;
 		this.charPriority = charPriority;
