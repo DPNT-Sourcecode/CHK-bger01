@@ -107,7 +107,7 @@ public final class PriceGrabber {
 		directory.add(new MultiBuy(Collections.singletonList('B'), 2, 45, 1));
 		directory.add(new MultiBuy(Collections.singletonList('H'), 10, 80, 1));
 		directory.add(new MultiBuy(Collections.singletonList('H'), 5, 45, 2));
-		directory.add(new MultiBuy(Collections.singletonList('K'), 2, 150, 1));
+		directory.add(new MultiBuy(Collections.singletonList('K'), 2, 120, 1));
 		directory.add(new MultiBuy(Collections.singletonList('P'), 5, 200, 1));
 		directory.add(new MultiBuy(Collections.singletonList('Q'), 3, 80, 1));
 		directory.add(new MultiBuy(Collections.singletonList('V'), 3, 130, 1));
@@ -261,3 +261,4 @@ public final class PriceGrabber {
 	}
 
 }
+
